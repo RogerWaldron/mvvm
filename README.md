@@ -1,4 +1,7 @@
 ## Simple Swift 6.2 Todo App using modern 2026 MVVM architecture
+
+<img src="docs/app-screenshot.png" alt="Screenshot of the todo app showing Todo and Done task sections" width="320">
+
 1. Initially written using Combine 
 2. Refactored to modern MVVM approach which doesn't use Combine
 
