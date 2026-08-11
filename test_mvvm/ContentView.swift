@@ -19,9 +19,7 @@ struct ContentView: View {
                     ForEach(viewModel.todoTasks) { task in
                         TaskRow(
                             task: task,
-                            onToggle: {
-                                viewModel.toggleTask(task)
-                            },
+                            isDone: isDoneBinding(for: task),
                             onRename: {
                                 startRenaming(task)
                             }
@@ -36,9 +34,7 @@ struct ContentView: View {
                     ForEach(viewModel.doneTasks) { task in
                         TaskRow(
                             task: task,
-                            onToggle: {
-                                viewModel.toggleTask(task)
-                            },
+                            isDone: isDoneBinding(for: task),
                             onRename: {
                                 startRenaming(task)
                             }
@@ -51,7 +47,7 @@ struct ContentView: View {
 
                 Section {
                     VStack(alignment: .leading) {
-                        Text("Tap task to toggle completion")
+                        Text("Use checkbox to toggle completion")
                         Text("Swipe Left to delete task")
                         Text("Swipe Right to rename task")
                     }
@@ -132,6 +128,14 @@ struct ContentView: View {
     private func resetTaskEditor() {
         taskTitle = ""
         taskEditorMode = nil
+    }
+
+    private func isDoneBinding(for task: Task) -> Binding<Bool> {
+        Binding {
+            viewModel.isTaskDone(task)
+        } set: { isDone in
+            viewModel.setTask(task, isDone: isDone)
+        }
     }
 
     private enum TaskEditorMode {

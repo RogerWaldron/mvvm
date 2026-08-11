@@ -64,6 +64,15 @@ class TaskViewModel {
         deleteTasks(doneTasks, at: offsets)
     }
 
+    func isTaskDone(_ task: Task) -> Bool {
+        tasks.first { $0.id == task.id }?.isDone ?? task.isDone
+    }
+
+    func setTask(_ task: Task, isDone: Bool) {
+        guard let idx = tasks.firstIndex(where: { $0.id == task.id }) else { return }
+        tasks[idx].isDone = isDone
+    }
+
     func toggleTask(_ task: Task) {
         guard let idx = tasks.firstIndex(where: {$0.id == task.id}) else { return }
         tasks[idx].isDone.toggle()
