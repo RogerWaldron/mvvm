@@ -2,7 +2,7 @@
 1. Initially written using Combine 
 2. Refactored to modern MVVM approach which doesn't use Combine
 
-### Curerntly:
+### Currently:
 - `TaskViewModel.swift` is explicitly `@MainActor`, so all task mutations happen on the main actor.
 - `ContentView.swift` stores the `@Observable` view model in `@State`, which is the modern SwiftUI pattern.
 - The button and swipe closures in TaskRow are invoked from SwiftUI UI interactions, so they run through the main UI path and can call the main-actor view model methods.
